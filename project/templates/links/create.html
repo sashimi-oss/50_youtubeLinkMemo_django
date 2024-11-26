@@ -1,0 +1,8 @@
+{% extends 'links/base.html' %}
+{% block content %}
+<form action="{% url 'links:create' %}" method="post">
+  {% csrf_token %}
+  {% form.as_p %}
+  <button type="submit">保存</button>
+</form>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'links/base.html' %}
+
+{% block content %}
+<h3>リンク集〜！</h3>
+<h4><a href="{% url 'links:create' %}">リンクをメモする</a></h4>
+<h4><a href="{% url 'links:watch' %}">メモを見る</a></h4>
+{% endblock %}
