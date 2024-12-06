@@ -1,0 +1,26 @@
+[
+  {
+    "model":"links.category",
+    "fields":{
+      "category":"blender関連"
+    }
+  },
+  {
+    "model":"links.category",
+    "fields":{
+      "category":"プログラミング関連"
+    }
+  },
+  {
+    "model":"links.category",
+    "fields":{
+      "category":"study関連"
+    }
+  },
+  {
+    "model":"links.category",
+    "fields":{
+      "category":"---"
+    }
+  }
+]
