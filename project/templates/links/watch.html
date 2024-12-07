@@ -19,7 +19,15 @@
     <td>{{link.title}}</td>
     <td><a href="{{link.link}}" target="_blank">{{link.link}}</a></td>
     <td>{{link.category}}</td>
+    <td>  
+      <form action="{% url 'links:delLink' link.link_id categoryId %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="削除">
+      </form>
+    </td>
   </tr>
+
+
   {% endfor %}
 </table>
 

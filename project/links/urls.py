@@ -8,4 +8,6 @@ urlpatterns = [
   path('create/', views.create, name='create'),
   path('watch/', views.watch, name='watch'),
   path('watch/<int:categoryId>', views.watch, name='watch'),
+  path('addCate/', views.addCate, name='addCate'),
+  path('delLink/<int:link_id>/<int:categoryId>', views.delLink, name='delLink'),
 ]

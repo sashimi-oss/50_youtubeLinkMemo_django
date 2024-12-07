@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Link
+from .models import Link, Category
 from django import forms
 
 class LinkForm(ModelForm):
@@ -16,3 +16,12 @@ class WatchForm(ModelForm):
   class Meta:
     model = Link
     fields = ['category']
+
+
+class AddCategoryForm(ModelForm):
+  class Meta:
+    model = Category
+    fields = ['category']
+    widgets = {
+      'category': forms.TextInput()
+    }

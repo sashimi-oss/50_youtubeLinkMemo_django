@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-from .forms import LinkForm, WatchForm
+from .forms import LinkForm, WatchForm, AddCategoryForm
 from .models import Link
 
 def index(request):
@@ -51,5 +51,34 @@ def watch(request, categoryId = 0):
   params = {
     'links':links,
     'form':form,
+    'categoryId':categoryId,
   }
   return render(request, 'links/watch.html', params)
+
+
+def addCate(request):
+  if request.method == 'POST':
+    form = AddCategoryForm(request.POST)
+    if form.is_valid():
+      form.save()
+
+    return redirect('links:addCate')
+
+  forms = AddCategoryForm()
+
+  params = {
+    'forms':forms,
+  }
+  
+  return render(request, 'links/addCate.html', params)
+
+
+def delLink(request, link_id, categoryId):
+  if request.method == 'POST':
+
+    link_record = Link.objects.get(pk=link_id)
+    # print(link_record, '--------deleteLink-------')
+    link_record.delete()
+
+    redirect_url = reverse('links:watch', args=[categoryId])
+    return redirect(redirect_url)
