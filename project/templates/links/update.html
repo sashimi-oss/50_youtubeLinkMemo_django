@@ -1,0 +1,8 @@
+{% extends 'links/base.html' %}
+{% block content %}
+<form action="{% url 'links:update' link.link_id %}" method="post">
+  {% csrf_token %}
+  {{form.category}}
+  <input type="submit" value="更新">
+</form>
+{% endblock %}

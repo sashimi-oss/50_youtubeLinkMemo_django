@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-from .forms import LinkForm, WatchForm, AddCategoryForm
-from .models import Link
+from .forms import LinkForm, WatchForm, cateListForm
+from .models import Link, Category
 
 def index(request):
   return render(request, 'links/index.html')
@@ -56,21 +56,24 @@ def watch(request, categoryId = 0):
   return render(request, 'links/watch.html', params)
 
 
-def addCate(request):
+def cateList(request):
   if request.method == 'POST':
-    form = AddCategoryForm(request.POST)
+    form = cateListForm(request.POST)
     if form.is_valid():
       form.save()
 
-    return redirect('links:addCate')
+    return redirect('links:cateList')
 
-  forms = AddCategoryForm()
+  forms = cateListForm()
+
+  category = Category.objects.order_by('category_id')
 
   params = {
     'forms':forms,
+    'categories':category,
   }
   
-  return render(request, 'links/addCate.html', params)
+  return render(request, 'links/cateList.html', params)
 
 
 def delLink(request, link_id, categoryId):
@@ -82,3 +85,32 @@ def delLink(request, link_id, categoryId):
 
     redirect_url = reverse('links:watch', args=[categoryId])
     return redirect(redirect_url)
+
+
+def delCate(request, category_id):
+  if request.method == 'POST':
+    category = Category.objects.filter(category_id=category_id)
+    category.delete()
+
+    return redirect('links:cateList')
+  
+def update(request, link_id):
+  if request.method == 'POST':
+    
+    link = Link.objects.filter(pk=link_id).first()
+    form = LinkForm(request.POST, instance=link)
+    if form.is_valid():
+      form.save()
+
+    return redirect('links:watch')
+    
+  
+  link = Link.objects.filter(pk=link_id).first()
+  form = LinkForm(instance=link)
+
+  params = {
+      'link':link,
+      'form':form,
+    }
+
+  return render(request, 'links/update.html', params)

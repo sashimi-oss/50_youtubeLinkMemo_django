@@ -18,7 +18,7 @@ class WatchForm(ModelForm):
     fields = ['category']
 
 
-class AddCategoryForm(ModelForm):
+class cateListForm(ModelForm):
   class Meta:
     model = Category
     fields = ['category']

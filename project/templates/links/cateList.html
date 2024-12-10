@@ -1,0 +1,39 @@
+{% extends 'links/base.html' %}
+{% block content %}
+<form action="{% url 'links:cateList' %}" method="post">
+  {% csrf_token %}
+  {{forms.as_p}}
+  <input type="submit" value="追加">
+</form>
+
+<br>
+<br>
+
+<form action="{% url 'links:index' %}" method="get">
+  <input type="submit" value="戻る">
+</form>
+
+
+<h3>カテゴリー一覧</h3>
+<table>
+  <tr>
+    <th>カテゴリーID</th>
+    <th>カテゴリー</th>
+    <th>削除ボタン</th>
+  </tr>
+  {% for category in categories %}
+    <tr>
+      <td>{{category.category_id}}</td>
+      <td>{{category}}</td>
+      <td>
+        <form action="{% url 'links:delCate' category.category_id%}" method="post">
+          {% csrf_token %}
+          <input type="submit" value="削除">
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
+
+</table>
+
+{% endblock content %}

@@ -20,6 +20,12 @@
     <td><a href="{{link.link}}" target="_blank">{{link.link}}</a></td>
     <td>{{link.category}}</td>
     <td>  
+      <form action="{% url 'links:update' link.link_id %}" method="get">
+        {% csrf_token %}
+        <input type="submit" value="更新">
+      </form>
+    </td>
+    <td>  
       <form action="{% url 'links:delLink' link.link_id categoryId %}" method="post">
         {% csrf_token %}
         <input type="submit" value="削除">
