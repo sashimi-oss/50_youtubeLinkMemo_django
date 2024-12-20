@@ -21,5 +21,5 @@ RUN apt-get update
 
 ENV LC_ALL ja_JP.UTF-8
 
-# COPY . /app
-# CMD ["sh", "build.sh"]
+COPY . /app
+CMD ["sh", "build.sh"]

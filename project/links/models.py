@@ -12,7 +12,7 @@ class Link(models.Model):
   link_id = models.AutoField(primary_key=True)
   title = models.CharField(max_length=100, verbose_name='タイトル')
   link = models.TextField(max_length=400, verbose_name='リンク')
-  category = models.ForeignKey(Category, on_delete=models.SET_DEFAULT, default=4)
+  category = models.ForeignKey(Category, on_delete=models.SET_DEFAULT, default=1)
   created_at = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):

@@ -2,6 +2,12 @@
   {
     "model":"links.category",
     "fields":{
+      "category":"---"
+    }
+  },
+  {
+    "model":"links.category",
+    "fields":{
       "category":"blender関連"
     }
   },
@@ -16,11 +22,6 @@
     "fields":{
       "category":"study関連"
     }
-  },
-  {
-    "model":"links.category",
-    "fields":{
-      "category":"---"
-    }
   }
+  
 ]
