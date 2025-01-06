@@ -2,7 +2,15 @@
 {% block content %}
 <form action="{% url 'links:update' link.link_id %}" method="post">
   {% csrf_token %}
-  {{form.category}}
+  <div>
+    {{ form.title.label_tag }} {{ form.title }}
+  </div>
+  <div>
+    {{ form.link.label_tag }} {{ form.link }}
+  </div>
+  <div>
+    {{ form.category.label_tag }} {{ form.category }}
+  </div>
   <input type="submit" value="更新">
 </form>
 {% endblock %}

@@ -96,18 +96,18 @@ def delCate(request, category_id):
   
 def update(request, link_id):
   if request.method == 'POST':
-    
-    link = Link.objects.filter(pk=link_id).first()
+  # link = Link.objects.filter(pk=link_id).first() #filterはクエリセット？が取得できるが1個だけの型じゃないらしい
+    link = Link.objects.get(pk=link_id)
     form = LinkForm(request.POST, instance=link)
     if form.is_valid():
       form.save()
-
+    else:
+      print('this area is post in update, ', form.errors)
     return redirect('links:watch')
     
-  
-  link = Link.objects.filter(pk=link_id).first()
+  # link = Link.objects.filter(pk=link_id).first()
+  link = Link.objects.get(pk=link_id)
   form = LinkForm(instance=link)
-
   params = {
       'link':link,
       'form':form,
