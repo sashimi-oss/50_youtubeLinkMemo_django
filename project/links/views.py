@@ -41,7 +41,7 @@ def watch(request, categoryId = 0):
 
 
   #dbから値を読み込むコード
-  if categoryId == 0 or categoryId == 4:
+  if categoryId == 0 or categoryId == 1:
     links = Link.objects.order_by('link_id')
   else:
     links = Link.objects.filter(category_id = categoryId).order_by('link_id')
